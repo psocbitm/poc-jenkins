@@ -21,12 +21,7 @@ pipeline {
                 // Run ESLint
                 sh 'npm run lint'
             }
-            post {
-                always {
-                    // Archive lint results if you have a file/report
-                    // archiveArtifacts artifacts: '**/eslint-report.json', allowEmptyArchive: true
-                }
-            }
+
         }
         stage('Build') {
             steps {
@@ -46,15 +41,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
-            when {
-                branch 'master'
-            }
-            steps {
-                // Deploy to production
-                sh 'deploy-scripts/deploy-prod.sh'
-            }
-        }
+
     }
     post {
         always {
